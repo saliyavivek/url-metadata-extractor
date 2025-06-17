@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# URL Metadata Extractor
 
-## Getting Started
+A web application where users can submit any URL, and the system fetches its metadata (title, description, preview image) in the background. Fetched metadata is displayed to the user.
 
-First, run the development server:
+Built with **Next.js**, **TypeScript**, and powered by **Redis** for caching.
+
+## Features
+
+- Submit any public URL and fetch metadata in real-time.
+- Extracts title, description, preview image, and more.
+- Caches results in Redis to reduce repeated fetches.
+
+## Tech Stack
+
+- [Next.js 14+](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redis](https://redis.io/)
+- [Docker & Docker Compose](https://docs.docker.com/compose/)
+
+## Local Development Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/saliyavivek/url-metadata-extractor.git
+cd url-metadata-extractor
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Rename the `env.example` file to `.env`.
+Replace `REDIS_URL` with your redis url.
+
+### 4. Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Docker Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Build and start the app + Redis using Docker Compose
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker-compose up --build
+```
 
-## Learn More
+This starts:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Your Next.js app at http://localhost:3000.
+- Redis server at redis://redis:6379 (internal Docker network).
